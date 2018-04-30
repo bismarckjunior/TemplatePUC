@@ -74,4 +74,4 @@ Alguns snippets foram criados para o desenvolvimento do documento utilizando o S
 * *\figure*: inserir uma figura
 
 ## 5. Licença
-A licença adotada foi a mesma do documento base, ou seja, GNU Free Documentation License, cuja cópia pode ser encontrada no arquivo [*LICENSING*](LICENSING).
+O template criado, TemplatePUC, foi baseado no modelo desenvolvido para PUC-Rio por: Thomas Lewiner, Marcelo Roberto Jimenez e David Pirotte, possuindo o Copyright (C) 2015, 2017 PUC-Rio. Esse modelo utiliza o licença de cópia GNU Free Documentation License que se encontra no arquivo [*LICENSING*](LICENSING).
