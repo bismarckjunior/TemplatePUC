@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+chapter{$1}
+\label{chap:${1/\s/-/g}}
+
+${2:$SELECTION}
+]]></content>
+	<tabTrigger>chapter</tabTrigger>
+	<scope>text.tex.latex</scope>
+    <description>Capítulo</description>
+</snippet>

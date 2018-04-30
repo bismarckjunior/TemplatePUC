@@ -1,0 +1,375 @@
+\documentclass{book}
+
+\usepackage{longtable}
+\usepackage{indentfirst}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}             %% OT1 has 127 characters only
+\usepackage{lmodern}
+\usepackage[top=1in, bottom=2.0cm, left=1.5cm, right=2.0cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{language=tex, commentstyle=\color{mygreen},keywordstyle=\color{blue}, frame=single,
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={á}{{\'a}}1 {ã}{{\~a}}1 {â}{{\^a}}1 {õ}{{\~o}}1 {ó}{{\'o}}1 {ê}{{\^e}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ç}{{\'c}}1 {ú}{{\'u}}1,}
+
+
+\makeatletter
+\newread\pin@file
+\newcounter{pinlineno}
+\newcommand\pin@accu{}
+\newcommand\pin@ext{pintmp}
+% inputs #3, selecting only lines #1 to #2 (inclusive)
+\newcommand*\partialinput [3] {%
+  \IfFileExists{#3}{%
+    \openin\pin@file #3
+    % skip lines 1 to #1 (exclusive)
+    \setcounter{pinlineno}{1}
+    \@whilenum\value{pinlineno}<#1 \do{%
+      \read\pin@file to\pin@line
+      \stepcounter{pinlineno}%
+    }
+    % prepare reading lines #1 to #2 inclusive
+    \addtocounter{pinlineno}{-1}
+    \let\pin@accu\empty
+    \begingroup
+    \endlinechar\newlinechar
+    \@whilenum\value{pinlineno}<#2 \do{%
+      % use safe catcodes provided by e-TeX's \readline
+      \readline\pin@file to\pin@line
+      \edef\pin@accu{\pin@accu\pin@line}%
+      \stepcounter{pinlineno}%
+    }
+    \closein\pin@file
+    \expandafter\endgroup
+    \scantokens\expandafter{\pin@accu}%
+  }{%
+    \errmessage{File `#3' doesn't exist!}%
+  }%
+}
+\makeatother
+
+\newcommand{\bs}{\textbackslash}
+\newcommand{\nl}{\\ & &}
+\newcommand{\newrow}[4]{
+  \bs #1 & \bs #2 & #3 \nl
+                    #4 \nl \\
+}
+
+\newenvironment{mytable}{
+\begin{longtable}{ p{4.8cm} p{4.3cm} p{8cm} }
+
+\hline
+  Português      & Inglês     & Descrição  \\
+  \hline
+\endfirsthead
+
+\hline
+  Português      & Inglês     & Descrição  \\
+  \hline
+\endhead
+
+\hline
+\endfoot
+}{
+\end{longtable}
+}
+
+
+\begin{document}
+
+  \title{TemplatePUC}
+  \author{Bismarck Gomes Souza Junior}
+  \maketitle
+  \let\cleardoublepage\clearpage
+
+  \chapter*{Instruções de Uso}
+
+  Instruções de uso do modelo TemplatePUC.cls que pode ser usado para gerar o documento final (dissertação, tese ou proposta de tese) no formato da PUC-Rio.
+
+  \section*{Arquivo Principal}
+
+  O arquivo \textit{tex} deve possuir os comandos obrigatórios para que seja possível gerar o documento final em \textit{pdf}. Um exemplo simples ilustrando esses comandos está exposto abaixo.
+
+
+  \lstinputlisting[language=tex]{example.tex}
+
+  \section*{Lista de comandos}
+  Este arquivo foi dividido em 15 partes, cada uma com seus respectivos comandos:
+
+  \begin{enumerate}
+      \item \textbf{Estilo do documento:} Configurações de estilo do documento final. Resume-se ao comando:
+      
+      \hspace{0.5cm} \bs documentclass[opções]\{TemplatePUC\}
+      
+      Existem 9 opções de configuração que podem ser passadas em português ou inglês, conforme exposto na tabela abaixo. As opções padrões, que são atribuídas automaticamente, estão destacadas em negrito. Quando mais de uma opção for escolhida, deve-se separá-las por vírgulas dentro dos colchetes.
+      
+      \begin{center}
+      \begin{tabular}{ l l l }
+       \hline
+       Português          & Inglês   & Descrição \\
+       \hline
+       mestrado           & master    & Formato de dissertacao        \\
+       \bf doutorado      & \bf phd       & Formato de tese               \\
+       proposta           & proposal  & Formato de proposta de tese   \\
+       \bf portugues      & \bf brazilian & Lingua portuguesa             \\
+       ingles             & american  & Lingua inglesa                \\
+       \bf umlado         & \bf oneside   & Impressao apenas de um lado   \\
+       frenteverso        & twoside   & Impressao dos dois lados      \\
+       rascunho           & draft     & Modo rascunho                 \\
+       cabecalho          & header    & Cabeçalho (capitulos)         \\
+       \hline
+       
+      \end{tabular}
+      \end{center}
+
+      \item \textbf{Referências bibliográfias:} Esta parte é obrigatória em todo arquivo e é responsável pela geração das referências no final do arquivo. O arquivo de referências (.bib) deve ser referenciado através do comando \textit{addbibresource}. As referências irão aparecer onde o comando \textit{printbibliography} aparecer. No exemplo, este comando é inserido na parte 15, antes dos apêndices.
+      
+      \item \textbf{Pacotes:} Os pacotes do latex utilizados devem ser colocados nesta parte utilizando o comando \textit{usepackage}. No exemplo, foi utilizado o pacote "multirow" que serve para mesclar linhas em tabelas.
+
+      \item \textbf{Definições globais:} Definições e comandos referentes ao arquivo atual devem ser colocados nesta parte. No exemplo, está sendo especificado que seja impresso as listas de figuras, tabelas e a nomenclatura no documento final. Além dos comandos criados pelo usuário, exitem as seguintes opções:
+
+      \begin{mytable}
+        \newrow{imprimirlista\{op1\}\{op2\}\{op3\}}{printlist\{op1\}\{op2\}\{op3\}}
+               {Imprimir lista de figuras (fig), tabelas (tab) e/ou nomenclatura (nom).}
+               {Ex: \bs imprimirlista\{fig\}\{tab\}\{nom\}\nl
+               \hspace{1.6em} \bs imprimirlista\{fig\}}
+               
+        \newrow{listasporcapitulo\{booleano\}}{contentsperchapter\{boolean\}}
+               {Ativa a opção de numeração de figuras e tabelas por capítulos.}
+               {Ex: \bs listasporcapitulo\{true\}}
+      \end{mytable}
+
+
+      \item \textbf{Dados do documento:} Principais informações sobre o documento final. Os possíveis comandos são:
+
+  \begin{mytable}
+    
+    \newrow{autor\{nome\}}{author\{name\}}
+           {Nome do autor.}
+           {Ex: \bs autor\{Bismarck Gomes Souza Junior\}}
+           
+    \newrow{autorR\{nome\}}{authorR\{name\}}
+           {Nome do autor ao inverso.}
+           {Ex: \bs autorR\{Souza Junior, Bismarck Gomes\}}
+           
+    \newrow{orientador\{nome\}\{titulo\}}{advisor\{name\}\{title\}}
+           {Nome do orientador.}
+           {Ex: \bs orientador\{Bismarck Gomes Souza Junior\}}
+           
+    \newrow{orientadorR\{nome\}}{advisorR\{name\}}
+           {Nome do orientador ao inverso.}
+           {Ex: \bs orientadorR\{Souza Junior, Bismarck Gomes\}}
+           
+    \newrow{coorientador\{nome\}\{titulo\}}{coadvisor\{name\}\{title\}}
+           {Nome do coorientador.}
+           {Ex: \bs coorientador\{Bismarck Gomes Souza Junior\}}
+           
+    \newrow{coorientadorR\{nome\}}{coadvisorR\{name\}}
+           {Nome do coorientador ao inverso.}
+           {Ex: \bs coorientadorR\{Souza, Bismarck Gomes\}}
+           
+    \newrow{coorientadorInst\{inst\}}{coadvisorInst\{inst\}}
+           {Nome da instituição do coorientador.}
+           {Ex: \bs coorientadorInst\{UENF\}}
+           
+    \newrow{coorientadorII\{nome\}\{titulo\}}{coadvisorII\{name\}\{title\}}
+           {Nome do segundo coorientador.}
+           {Ex: \bs coorientador\{Bismarck Gomes Souza Junior\}}
+           
+    \newrow{coorientadorIIR\{nome\}}{coadvisorIIR\{name\}}
+           {Nome do segundo coorientador ao inverso.}
+           {Ex: \bs coorientadorR\{Souza, Bismarck Gomes\}}
+           
+    \newrow{coorientadorIIInst\{inst\}}{coadvisorIIInst\{inst\}}
+           {Nome da instituição do  segundo coorientador.}
+           {Ex: \bs coorientadorInst\{UENF\}}
+           
+    \newrow{coorientadorIII\{nome\}\{titulo\}}{coadvisorIII\{name\}\{title\}}
+           {Nome do terceiro coorientador.}
+           {Ex: \bs coorientador\{Bismarck Gomes Souza Junior\}}
+           
+    \newrow{coorientadorIIIR\{nome\}}{coadvisorIIIR\{name\}}
+           {Nome do terceiro coorientador ao inverso.}
+           {Ex: \bs coorientadorR\{Souza, Bismarck Gomes\}}
+           
+    \newrow{coorientadorIIIInst\{inst\}}{coadvisorIIIInst\{inst\}}
+           {Nome da instituição do terceiro coorientador.}
+           {Ex: \bs coorientadorInst\{UENF\}}
+           
+    \newrow{titulo\{texto\}}{title\{text\}}
+           {Título do trabalho em portugês.}
+           {Ex: \bs titulo\{Avanço da Tecnologia Digital\}}
+           
+    \newrow{subtitulo\{texto\}}{subtitle\{text\}}
+           {Subtítulo do trabalho em portugês.}
+           {Ex: \bs subtitulo\{Do Brasil para o mundo\}}
+           
+    \newrow{titulous\{text\}}{titleus\{text\}}
+           {Título do trabalho em inglês.}
+           {Ex: \bs titulous\{Advance of Digital Technology\}}
+           
+    \newrow{dia\{dia\}}{dd\{day\}}
+           {Dia que aparecerá na contra capa do trabalho.}
+           {Ex: \bs dia\{27\}}
+
+    \newrow{mes\{mes\}}{mm\{month\}}
+           {Mês que aparecerá na capa e na contra capa do trabalho.}
+           {Ex: \bs mes\{abril\}}
+           
+    \newrow{ano\{ano\}}{yyyy\{year\}}
+           {Ano que aparecerá na capa e na contra capa do trabalho.}
+           {Ex: \bs ano\{2018\}}
+           
+    \newrow{cidade\{texto\}}{city\{text\}}
+           {Cidade na qual foi apresentado o trabalho.}
+           {Ex: \bs cidade\{Rio de Janeiro\}}
+           
+    \newrow{departamento\{texto\}}{department\{text\}}
+           {Departamento para o qual foi apresentado o trabalho.}
+           {Ex: \bs departamento\{Engenharia Civil e Ambiental\}}
+           
+    \newrow{programa\{texto\}}{program\{text\}}
+           {Programa pelo qual receberá o título.}
+           {Ex: \bs programa\{Engenharia Civil\}}
+           
+    \newrow{centro\{texto\}}{school\{text\}}
+           {Centro pelo qual receberá o título.}
+           {Ex: \bs centro\{Centro Técnico Científico\}}
+           
+    \newrow{universidade\{texto\}}{university\{text\}}
+           {Universidade pelo qual receberá o título.}
+           {Ex: \bs universidade\{Pontifícia Universidade Católica do Rio de Janeiro\}}
+           
+    \newrow{universidade\{texto\}}{university\{text\}}
+           {Universidade pelo qual receberá o título.}
+           {Ex: \bs universidade\{Pontifícia Universidade Católica do Rio de Janeiro\}}
+           
+    \newrow{uni\{texto\}}{uni\{text\}}
+           {Abreviação da universidade pelo qual receberá o título.}
+           {Ex: \bs uni\{PUC-Rio\}}
+         
+  \end{mytable}
+
+  \item \textbf{Banca examinadora:} Informações sobre a banca examinadora. Os possíveis comandos são:
+
+  \begin{mytable}
+    \bs banca\{                & \bs jury\{ &  Membros da banca. \\
+    \indent \bs membrodabanca\{nome\}\{titulo\}  &\indent \bs jurymember\{name\}\{title\} & Ex: \bs banca\{ \\
+    \indent \vdots     &\indent \vdots  & \hspace{0.5cm}\bs membrodabanca\{Fulano de Tal\}\{Dr.\} \\
+    \indent \bs coordenador\{nome\}\{titulo\}      & \indent \bs schoolhead\{name\}\{title\}   & \hspace{0.5cm}\bs coordenador\{Beltrano de Tal\}\{Dr.\}\\
+    \}                        & \}    & \} \\
+  \end{mytable}
+
+
+  \item \textbf{Currículo:} Informação sobre o autor. O comando para essa ação é:
+
+  \begin{mytable}     
+    \newrow{curriculo\{texto\}}{resume\{text\}}
+           {Curriculo do autor.}
+           {Ex: \bs curriculo\{Graduou-se em \ldots \}}
+  \end{mytable}       
+           
+  \item \textbf{Ficha catalográfica:} Informações que serão utilizadas apenas na ficha catalográfica. Os possíveis comandos são:
+
+  \begin{mytable}    
+     \newrow{colorido\{booleano\}}{usecolour\{boolean\}}
+           {Define se o documento é colorida ou não.}
+           {Ex: \bs colorido\{true\}}
+           
+    \newrow{CDD\{número\}}{CDD\{number\}}
+           {Classificação Decimal de Dewey.}
+           {Ex: \bs CDD\{624\}}
+  \end{mytable}   
+
+  \item \textbf{Palavras-chave:} As palavras-chaves serão utilizadas tanto no resumo e abstract quanto na ficha catalográfica. Os possíveis comandos são:
+
+  \begin{mytable}  
+     \bs prechaves\{                & \bs catalogprekeywords\{ &  Palavras-chaves do início da ficha catalográfica. \\
+    \indent \bs prechave\{texto\}  &\indent \bs catalogprekey\{text\} & Ex: \bs prechaves\{ \\
+    \indent \vdots     &\indent \vdots  & \hspace{0.5cm} \bs prechave\{Engenharia Civil\} \\
+    \}                        & \}    & \} \\
+    &&\\
+    
+    \bs chaves\{                & \bs keywords\{ &  Palavras-chaves do trabalho. \\
+    \indent \bs chave\{texto\}  &\indent \bs key\{text\} & Ex: \bs chaves\{ \\
+    \indent \vdots     &\indent \vdots  & \hspace{0.5cm} \bs chave\{simulação numérica\} \\
+    \}                        & \}    & \} \\
+    &&\\
+            
+    \bs chavesus\{                & \bs keywordsus\{ &  Palavras-chaves do trabalho em inglês. \\
+    \indent \bs chave\{texto\}  &\indent \bs key\{text\} & Ex: \bs chavesus\{ \\
+    \indent \vdots     &\indent \vdots  & \hspace{0.5cm} \bs chave\{numerical simulation\} \\
+    \}                        & \}    & \} \\
+    &&\\
+    \hline
+  \end{mytable}   
+
+  \item \textbf{Resumo e abstract:} O resumo e o abstract são introduzidos através dos comandos:
+
+  \begin{mytable}      
+     \newrow{resumo\{texto\}}{abstract\{text\}}
+           {Resumo do trabalho em portugês.}
+           {Ex: \bs resumo\{Sistemas autônomos \ldots\}}
+           
+    \newrow{resumous\{texto\}}{abstrackus\{text\}}
+           {Resumo do trabalho em inglês.}
+           {Ex: \bs resumous\{Autonomous systems \ldots\}}
+  \end{mytable}   
+
+  \item \textbf{Dedicatória e agradecimentos:} A dedicatória (opcional) e os agradecimentos são introduzido através dos comandos:
+
+  \begin{mytable}        
+     \newrow{dedicatoria\{texto\}}{dedication\{text\}}
+           {Dedicatória do trabalho.}
+           {Ex: \bs dedicatoria\{À minha querida esposa.\}}
+           
+     \newrow{agradecimentos\{texto\}}{acknowledgment\{text\}}
+           {Parte do trabalho referente aos agradecimentos.}
+           {Ex: \bs agradecimentos\{A Deus por \ldots\}}
+  \end{mytable}  
+
+  \item \textbf{Epígrafe:} Na opção de epígrafe, embora opcional, é possível informar o texto, o autor e a fonte (livro) de onde foi extraída a informação. Os possíveis comandos são:
+
+  \begin{mytable}
+     \newrow{epigrafe\{texto\}}{epigraph\{text\}}
+           {Epígrafe do trabalho.}
+           {Ex: \bs epigrafe\{O sucesso é \ldots\}}
+           
+    \newrow{epigrafeautor\{texto\}}{epigraphauthor\{text\}}
+           {Autor da epígrafe do trabalho.}
+           {Ex: \bs epigrafeautor\{Winston Churchill\}}
+           
+    \newrow{epigrafelivro\{texto\}}{epigraphbook\{text\}}
+           {Fonte da epígrafe do trabalho.}
+           {Ex: \bs epigrafelivro\{Regards sur le passé\}}
+  \end{mytable}  
+
+  \item \textbf{Documento:} A principal parte do documento, onde o conteúdo é elaborado. Nesta parte existem 3 principais comandos:
+  \begin{itemize}
+      \item \bs include\{arquivo1\}: inclusão de arquivos tex. A sugestão é criar os capítulos do documento em arquivos separados e incluir no arquivo principal através deste comando.
+      
+      \item \bs printbibliography: comando que insere as referências bibliográficas
+      
+      \item \bs appendix: comando a partir do qual qualquer capítulo será considera um apêndice.
+  \end{itemize}
+
+  \end{enumerate}
+
+
+  \chapter*{Licença}
+
+  O template criado, TemplatePUC, foi baseado no modelo desenvolvido para PUC-Rio por: Thomas Lewiner, Marcelo Roberto Jimenez e David Pirotte, possuindo o Copyright (C) 2015, 2017 PUC-Rio. Esse modelo utiliza o licença de cópia GNU Free Documentation License que está exposta abaixo.
+
+  \section*{GNU Free Documentation License}
+
+  \partialinput{2}{132}{../../../LICENSING}
+
+
+\end{document}

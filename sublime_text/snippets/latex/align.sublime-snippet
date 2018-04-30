@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+begin{align} \label{eq:${1:tmp$TM_LINE_NUMBER}}
+  $2
+ \end{align}
+$0
+]]></content>
+	<tabTrigger>align</tabTrigger>
+	<scope>text.tex.latex</scope>
+    <description>Equação alinhada</description>
+</snippet>

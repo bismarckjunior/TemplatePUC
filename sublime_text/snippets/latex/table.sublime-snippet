@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+begin{table}[ht]
+  \caption{$1}
+  \label{tab:${1/\s/-/g}}
+  \centering
+  \begin{tabular}{${2:lll}}
+    \hline
+    ${3:Header 1    & Header 2    & Header 3}    \\\\
+    \hline
+    ${4:Cell 1      & Cell 2      & Cell 3 }     \\\\
+    \hline
+   \end{tabular}
+ \end{table}
+$0
+]]></content>
+	<tabTrigger>table</tabTrigger>
+	<scope>text.tex.latex</scope>
+    <description>Tabela</description>
+</snippet>

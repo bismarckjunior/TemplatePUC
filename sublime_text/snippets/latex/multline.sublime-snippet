@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+begin{multline} \label{eq:${1:tmp$TM_LINE_NUMBER}}
+  $2
+ \end{multline}
+$0
+]]></content>
+	<tabTrigger>multline</tabTrigger>
+	<scope>text.tex.latex</scope>
+    <description>Equação multilinha</description>
+</snippet>

@@ -1,0 +1,88 @@
+% 1. Estilo do documento
+\documentclass[mestrado]{TemplatePUC}
+
+% 2. Referencias biliograficas
+\usepackage{csquotes} % evita mensagem de erro no babel
+\usepackage[style=abnt, justify]{biblatex}
+\addbibresource{bibliografia.bib}
+
+% 3. Pacotes
+\usepackage{multirow}
+
+% 4. Definições globais
+\imprimirlista{fig}{tab}{nom}
+
+% 5. Dados do documento
+\titulo{Título do Trabalho em Portugês}
+\titulous{ Title in English }
+
+\autor{Bismarck Gomes Souza Júnior}
+\autorR{Souza Júnior, Bismarck Gomes}
+
+\orientador{Beltrano Matos Figueira}{PhD.}
+\orientadorR{Figueira, Beltrano Matos}
+
+\dia{30}
+\mes{abril}
+\ano{2017}
+
+\departamento{Engenharia Civil e Ambiental}
+\programa{Engenharia Civil}
+\centro{Centro Técnico Científico}
+
+% 6. Banca examinadora
+\banca{
+  \membrodabanca{Fulano de Tal}{PhD.}
+    {Departamento de Engenharia Civil e Ambiental}{PUC-Rio}
+
+  \membrodabanca{Ciclano Almeida Pinto}{Dr.}
+    {Departamento de Engenharia Civil}{UFRJ}
+
+  \coordenador{José Eugenio Leal}{Prof.}
+}
+
+% 7. Currículo
+\curriculo{ Graduou-se em \ldots }
+
+% 8. Ficha catalográfica.
+\colorido{true} 
+\CDD{624}
+
+% 9. Palavras-chave
+\prechaves{
+  \prechave{Engenharia civil}
+}
+\chaves{
+  \chave{geomecânica de reservatórios}
+  \chave{acoplamento termo-hidro-mecânico}
+  \chave{acoplamento de malhas}
+}
+\chavesus{
+  \chave{reservoir geomechanics}
+  \chave{thermo-hydro-mechanical coupling}
+  \chave{mesh coupling}
+}
+
+% 10. Resumo e abstract
+\resumo{ Na simulação numérica de \ldots }
+\resumous{ Numerical simulation is \ldots }
+
+% 11. Dedicatória e agradecimentos
+\agradecimentos{ A Deus por tudo \ldots }
+
+% 12. Epigrafe
+\epigrafe{ O sucesso é ir de fracasso em fracasso sem perder entusiasmo.}
+\epigrafeautor{Winston Churchill}
+
+% 13. Documento
+\begin{document}
+
+  \include{Chap1_Introducao}
+  \include{Chap2_RevisaoBibliografica}
+  
+  \printbibliography
+
+  \appendix
+  \include{ChapA_ArquivosEntrada}
+
+\end{document}

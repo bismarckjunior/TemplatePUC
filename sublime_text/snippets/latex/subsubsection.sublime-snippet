@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+subsubsection{$1}
+\label{subsubsec:${1/\s/-/g}}
+
+${2:$SELECTION}
+]]></content>
+	<tabTrigger>subsubsection</tabTrigger>
+	<scope>text.tex.latex</scope>
+    <description>Subsubseção</description>
+</snippet>
