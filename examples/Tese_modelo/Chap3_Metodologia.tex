@@ -1,0 +1,180 @@
+%!TEX root = ./Thesis.tex
+
+%%
+%% Bismarck Gomes <bismarck@puc-rio.br>
+%%
+
+\chapter{Metodologia}
+\label{chap:Metodologia}
+
+Conforme discutido no Capítulo \ref{chap:Revisão-Bibliográfica} \ldots
+\lipsum[1]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Figuras}
+\label{sec:Figuras}
+
+A Figura \ref{fig:puc.png} ilustra um exemplo de como referenciar uma figura, 
+enquanto que a Figura \ref{fig:puc2}, como utilizar subfiguras.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=1.0]{figs/puc.png}
+  \caption{Logo da PUC-Rio}
+  \label{fig:puc.png}
+ \end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \subfigure[Legenda 1]{\includegraphics[scale=0.3]{figs/puc.png}}
+  \hspace{1cm}
+  \subfigure[Legenda 2]{\includegraphics[scale=0.4]{figs/puc.png}}
+  \caption{Logo da PUC-Rio em forma de subfigura}
+  \label{fig:puc2}
+ \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equações}
+\label{sec:Equações}
+ 
+Exemplos de equações:
+
+\begin{itemize}
+	\item{Equação simples: eq. (\ref{eq:simples})}
+	\item{Equação grande: eq. (\ref{eq:grande})}
+	\item{Equação alinhada: eq. (\ref{eq:alinhada})}
+\end{itemize}
+
+Seguem as equações, começando com uma relação bem simples entre os lados de um triângulo retângulo escaleno:
+\begin{equation} \label{eq:simples}
+  a^2 = b^2 + c^2,
+ \end{equation}
+onde $a$ é a hipotenusa; $b$, o menor cateto; e $c$, o maior cateto.
+\nomenclature[A]{$a$}{Hipotenusa}
+\nomenclature[A]{$b$}{Menor cateto}
+\nomenclature[A]{$c$}{Maior cateto}
+
+Já uma equação maior, que ocupa mais de uma linha, é necessário um tratamento especial. Por exemplo, a série de Taylor de uma função $f$ em torno do ponto $x=x_0$ dada por:
+\begin{multline} \label{eq:grande}
+  f(x) = f(x_0)+f'(x_0)\frac{\left(x-x_0\right)}{1!} +
+  			 f''(x_0)\frac{\left(x-x_0\right)^2}{2!} + \\
+  			 f'''(x_0)\frac{\left(x-x_0\right)^3}{3!} 
+  			 +\ldots+f^{(n)}(x_0)\frac{\left(x-x_0\right)^n}{n!}.
+	\nomenclature[A]{$f$}{Função qualquer}
+ \end{multline}
+
+Por outro lado, o desenvolvimento de uma equação pode ser escrita na forma:
+\begin{align} \label{eq:alinhada}
+	A &= \pi r^2     \nonumber\\
+	  &= \pi (10)^2  \nonumber\\
+	  &= 100\pi 
+  \end{align}
+
+Da mesma forma, é possível escrever um sistema de equações:
+\begin{eqnarray} \label{eq:tmp74}
+    x+y+z &=& 1 \\
+    3x-2y-4z &=& 10 \\
+    3x-2y &=& 20
+ \end{eqnarray}
+ou ainda:
+
+ \begin{equation} \label{eq:tmp81}
+  \begin{cases}
+    x+y +z= 1 \\
+    3x-2y -4z= 10 \\
+    3x-2y = 20
+  \end{cases}
+ \end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tabelas}
+\label{sec:Tabelas}
+
+Seguem o exemplo de duas tabelas, Tabela \ref{tab:Primeira-tabela} e Tabela \ref{tab:Segunda-tabela}.
+
+\begin{table}[ht]
+	\centering
+	\caption{Primeira tabela}
+	\label{tab:Primeira-tabela}
+	% \vspace{0.5em}
+	\begin{tabular}{ clc } 
+	\hline
+	Células 	& Lugar    & Valor \\ 
+	\hline
+	c1   			& Caxias   & 90,0 \\ 
+	c2 				& Mesquita & 59,0 \\ 
+	\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\caption{Segunda tabela}
+	\label{tab:Segunda-tabela}
+	% \vspace{0.5em}
+	\begin{tabular}{ clc } 
+	\hline
+	Células 	& Lugar    & Valor \\ 
+	\hline
+	\multirow{2}{1cm}{\centering RJ} 
+	    			& Caxias   & 90,0 \\ 
+	   				& Mesquita & 59,0 \\ 
+	\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\caption{Segunda tabela}
+	% \vspace{0.5em}
+	\begin{tabular}{ clc } 
+	\hline
+	Células 	& Lugar    & Valor \\ 
+	\hline
+	\multirow{2}{1cm}{\centering RJ} 
+	    			& Caxias   & 90,0 \\ 
+	   				& Mesquita & 59,0 \\ 
+	\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\caption{Segunda tabela}
+	% \vspace{0.5em}
+	\begin{tabular}{ clc } 
+	\hline
+	Células 	& Lugar    & Valor \\ 
+	\hline
+	\multirow{2}{1cm}{\centering RJ} 
+	    			& Caxias   & 90,0 \\ 
+	   				& Mesquita & 59,0 \\ 
+	\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\caption{Segunda tabela}
+	% \vspace{0.5em}
+	\begin{tabular}{ clc } 
+	\hline
+	Células 	& Lugar    & Valor \\ 
+	\hline
+	\multirow{2}{1cm}{\centering RJ} 
+	    			& Caxias   & 90,0 \\ 
+	   				& Mesquita & 59,0 \\ 
+	\hline
+	\end{tabular}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referências}
+\label{chap:Referências}
+
+Segundo \textcite{anderson1989}, a terra é levemente arredondada. E de acordo com \textapud{biot1957}{righetto2016} é possível chegar ao Japão, cavando um buraco bem profundo no Brazil \cite{aavatsmark2007}.
+
+Porém, lembre-se de sempre vericar a fonte\footcite{edwards1998} de suas informações para não cometer o equívoco\footnote{Texto descritivo da seleção} de divulgar uma informação errada \apud{terzaghi1943}{zienkiewicz1999}.
+\iffalse
+\fi

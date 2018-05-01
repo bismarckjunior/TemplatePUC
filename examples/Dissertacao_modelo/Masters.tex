@@ -2,13 +2,12 @@
 %% Bismarck Gomes <bismarck@puc-rio.br>
 %%
 
-\documentclass[proposta]{TemplatePUC}
+\documentclass[mestrado]{TemplatePUC}
 
 
 %%%
 %%% Pacotes
 %%%
-
 \usepackage{multirow} % mesclar linhas na tabela
 \usepackage{multicol} % mesclar colunas na tabela
 \usepackage{lipsum}   % gerador de lero-lero
@@ -58,6 +57,7 @@
 \mes{dezembro}
 \ano{2017}
 
+% \cidade{Rio de Janeiro}
 \departamento{Engenharia Civil e Ambiental}
 \programa{Engenharia Civil}
 \centro{Centro Técnico Científico}
@@ -82,12 +82,27 @@
 
 
 %%%
-%%% Resumo
+%%% Currículo
 %%%
 
-\resumo{%
-  \lipsum[4]
- }
+\curriculo{%
+  Graduou-se em Engenharia de Petróleo pela Universidade Estadual do Norte Fluminense (UENF), tendo desenvolvido trabalho científico na área de simulação numérica de reservatórios. Cursou mestrado em Engenharia de Reservatório e Exploração da UENF, com uma dissertação na área de simulação numérica multifásica e composicional de poços de petróleo. Durante o período de doutorado, trabalhou junto ao Grupo de Tecnologia e Engenharia de Petróleo da PUC-Rio, onde atualmente se enquadra como pesquisador na área de simulação numérica aplicada à geomecânica de reservatórios.}
+
+
+%%%
+%%% Ficha catalográfica.
+%%%
+
+%% Documento colorido?
+\colorido{true}  
+
+%% Classificação Decimal de Dewey (ver com a biblioteca)
+\CDD{624}
+
+%% Prechaves
+\prechaves{
+  \prechave{Engenharia civil}
+}
 
 %% Chaves para o resumo e ficha catalográfica
 \chaves{
@@ -95,6 +110,30 @@
   \chave{acoplamento termo-hidro-mecânico}
   \chave{acoplamento de malhas}
 }
+
+%% Chaves para o abstract
+\chavesus{
+  \chave{reservoir geomechanics}
+  \chave{thermo-hydro-mechanical coupling}
+  \chave{mesh coupling}
+}
+
+
+%%%
+%%% Agradecimentos
+%%%
+
+\agradecimentos{
+  \lipsum[1-3]
+}
+
+
+%%%
+%%% Resumo
+%%%
+\resumo{%
+  \lipsum[4]
+ }
 
 
 %%%
@@ -107,12 +146,16 @@
   \lipsum[5]
 }
 
-%% Chaves para o abstract
-\chavesus{
-  \chave{reservoir geomechanics}
-  \chave{thermo-hydro-mechanical coupling}
-  \chave{mesh coupling}
+
+%%%
+%%% Epigrafe
+%%%
+
+\epigrafe{%
+  \lipsum[6]
 }
+\epigrafeautor{Winston Churchill}
+% \epigrafelivro{Regards sur le passé}
 
 
 %%%
