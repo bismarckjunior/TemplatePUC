@@ -21,16 +21,56 @@ Dentre as diferenças entre o modelo original e o desenvolvido estão:
 
 
 ## 1. Instalação
-O funcionamento do template resume-se à instalação do [Tex Live](https://www.tug.org/texlive/acquire-netinstall.html). Feita a instalação, basta colocar o arquivo *TemplatePUC.cls* no diretório atual ou no diretório do Latex e atualizá-lo.
+O funcionamento do template resume-se à instalação do [Tex Live](https://www.tug.org/texlive/acquire-netinstall.html). Feita a instalação, basta colocar o arquivo *TemplatePUC.cls* no diretório atual ou no diretório do LaTeX e atualizá-lo.
 
-No Windows, coloque o arquivo *TemplatePUC.cls* na pasta:
+### 1.1. Windows
 
-> C:\texlive\2017\texmf-dist\tex\latex\templatePUC
+No Windows, baixe e execute *install-tl-windows.exe*. Após a instalação, coloque o arquivo *TemplatePUC.cls* na pasta:
 
-Abrir o terminal do Tex Live (C:\texlive\2017\tlpkg\installer\tl-cmd.bat) e digitar:
+> C:\texlive\2017\texmf-dist\tex\LaTeX\templatePUC
+
+Abrir o terminal do Tex Live (procurando no menu iniciar ou indo em C:\texlive\2017\tlpkg\installer\tl-cmd.bat) e digitar:
 
 > texhash
 
+### 1.2. Linux
+
+No Linux, baixe o arquivo *install-tl-unx.tar.gz* e descompacte com o comando:
+
+> tar -xzf install-tl-unx.tar.gz
+
+Abra na pasta descompactada e inicie a instalação:
+
+> cd install-tl-??????/
+> sudo ./install-tl
+
+Na instalação, opte pela opção [i] e pressione enter.
+
+Adicione o caminho do TeX Live ao path do sistema, abrindo o arquivo *environment* com o comando:
+
+> sudo gedit /etc/environment
+
+Adicione o caminho do TeX Live no final da variável PATH, ou seja, trocando:
+
+> PATH="/usr/local/sbin:/usr [...] :/usr/local/games:"
+
+por:
+
+> PATH="/usr/local/sbin:usr [...] :/usr/local/games:/usr/local/texlive/2018/bin/x86_64-linux/"
+
+Para adicionar o *TemplatePUC* ao sistema, crie uma pasta dentro do texlive:
+
+> sudo mkdir /usr/local/texlive/texmf-local/tex/latex/local/templatePUC
+
+Copie o arquivo *TemplatePUC.cls* para a pasta criada:
+
+> sudo cp TemplatePUC.cls /usr/local/texlive/texmf-local/tex/latex/local/templatePUC
+
+Atualizar o TexLive:
+
+> sudo /usr/local/texlive/2018/bin/x86_64-linux/texhash
+
+Finalmente, encerre a sessão atual ou reinicialize o sistema.
 
 ## 2. Instruções de Uso
 As instruções de como utilizar o template está descrita no arquivo [instrucoes_uso.pdf](doc/InstrucoesUso/instrucoes_uso.pdf).
@@ -45,19 +85,21 @@ Para a compilação recomenda-se o uso do Sublime Text, mas por conveniência se
 No TeXworks basta inicializar o arquivo principal.
 
 ### 4.2. Sublime Text
-No [Sublime Text](https://www.sublimetext.com/) existe o pacote [LatexTools](https://packagecontrol.io/packages/LaTeXTools), no qual basta abrir o arquivo *tex* e compilar com o comando (Ctrl+B).
+No [Sublime Text](https://www.sublimetext.com/) existe o pacote [LaTeXTools](https://packagecontrol.io/packages/LaTeXTools), no qual basta abrir o arquivo *tex* e compilar com o comando (Ctrl+B).
 
 Com o Sublime Text instalado siga os passos:
-1. Instalar o package contol: Ctrl+Shift+P, "Install package", Enter
-2. Abrir o package contol: Ctrl+Shift+P, "Install package", Enter
-3. Instalar o pacote: "LatexTools"
-4. Abrir arquivo tex e compilar com Ctrl+B.
+1. Instalar o package contol: Ctrl+Shift+P, "Install Package Control", Enter
+2. Abrir o package contol: Ctrl+Shift+P, "Package Control: Install Package", Enter
+3. Instalar o pacote: "LaTeXTools"
+4. Abrir arquivo tex
+5. Compilar com Ctrl+Shift+B, optando pela opção "LaTeX - PdfLaTeX".
+6. Compliar com Ctrl+B
 
-É possível verificar se o latex está corretamente instalado fazendo:
-Preferences > Package Settings > LatexTools > Check System.
+É possível verificar se o LaTeX está corretamente instalado fazendo:
+Preferences > Package Settings > LaTeXTools > Check System.
 
-Uma melhoria que pode ser feita é alterar algumas configurações do pacote LatexTools, para isso faça:
-1. Preferences > Package Settings > LatexTools > Settings-User
+Uma melhoria que pode ser feita é alterar algumas configurações do pacote LaTeXTools, para isso faça:
+1. Preferences > Package Settings > LaTeXTools > Settings-User
 2. No item "keep_focus", troque "true" para "false". Assim, após gerar o arquivo o foco será trocado para o arquivo pdf gerado.
 3. No item "aux_directory", troque "" por "temp". Assim, os arquivos auxiliares serão gerados na pasta temp.
 4. No item "output_directory", troque "" por "temp". Assim, os arquivos temporários serão gerados na pasta temp.

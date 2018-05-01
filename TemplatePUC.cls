@@ -199,6 +199,8 @@
 \RequirePackage{nomencl}
 
 % numbering figures and tables
+\let\counterwithout\relax  % error in TeXLive 2018
+\let\counterwithin\relar   % error in TeXLive 2018
 \RequirePackage{chngcntr}
 
 % capitalize words
@@ -1436,6 +1438,7 @@
 \newcommand{\printlist}[3]{%
   % avoid warning message about mapping 'american' language
   \DeclareLanguageMapping{american}{english-abnt}
+  \DeclareLanguageMapping{brazilian-abnt}{brazilian-abnt} % erro em TexLive 2018
 
   \ifstrequal{#1}{fig}{\renewcommand{\firstList}{\listfigures}}{
   \ifstrequal{#1}{tab}{\renewcommand{\firstList}{\listtables}}{
