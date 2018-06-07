@@ -1,0 +1,116 @@
+\documentclass{book}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{showexpl} 
+\usepackage[T1]{fontenc}
+\usepackage{afterpage}
+
+\graphicspath{{./figs/}}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+\usepackage{float}
+\usepackage[top=1cm, bottom=1cm, left=1cm, right=1cm]{geometry}
+
+\begin{document}
+\pagestyle{empty}
+	\lipsum[1]
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando h}
+	 \end{figure}
+	\lipsum[2-6]
+
+
+	\newpage
+	\lipsum[1]
+	\begin{figure}[t]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando t}
+	 \end{figure}
+	\lipsum[2-5]
+
+
+	\newpage
+	\lipsum[1]
+	\begin{figure}[b!]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando b}
+	 \end{figure}
+	\lipsum[2-6]
+
+	\blankpage
+	
+	\lipsum[1]
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando b}
+	\end{figure}
+	\lipsum[2]
+
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando b}
+	 \end{figure}
+	 \lipsum[3-11]
+	 \afterpage{\newpage}
+
+	\blankpage
+	
+	\lipsum[1]
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando b}
+	\end{figure}
+	\lipsum[2]
+
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando b}
+	 \end{figure}
+	 \lipsum[3-11]
+	 \blankpage
+	
+	\lipsum[1]
+	\begin{figure}[p]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando b}
+	\end{figure}
+	\lipsum[2]
+
+	\begin{figure}[p]
+	  \centering
+	  \includegraphics[scale=2]{formas.png}
+	  \caption{Posição com o comando b}
+	 \end{figure}
+	 \lipsum[3-11]
+	 \blankpage
+
+	% \newpage
+	% \newpage
+	% \lipsum[1]
+	% \begin{figure}[p]
+	%   \centering
+	%   \includegraphics[scale=2]{formas.png}
+	%   \caption{Posição com o comando p}
+	%   \label{fig:formas.png}
+	%  \end{figure}
+	% \begin{figure}[p]
+	%   \centering
+	%   \includegraphics[scale=2]{formas.png}
+	%   \caption{Posição com o comando p}
+	%  \end{figure}
+	% \lipsum[2-5]
+\end{document}

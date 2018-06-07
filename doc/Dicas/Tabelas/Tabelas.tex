@@ -1,0 +1,1353 @@
+\documentclass{../CursoLaTeX}
+
+\subtitle{Tabelas (Básico)}
+
+\usepackage{array}
+\usepackage{multirow}
+
+\def\hc{\centering\arraybackslash}
+\newcolumntype{M}[1]{>{\hc} m{#1}}
+\newcolumntype{P}[1]{>{\hc} p{#1}}
+\newcolumntype{B}[1]{>{\hc} b{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\newcommand{\vcell}[3][c]{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Sumário} 
+  \tableofcontents[] 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tabela Simples}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Tabela Simples}
+O comando \textbf{tabular} possibilita a inclusão de tabelas no documento.
+
+\begin{lstlisting}[style=latex, linewidth=12cm, xleftmargin=2cm]
+\documentclass{article}
+
+\begin{document}
+
+  % Inserindo tabela
+  \begin{tabular}{ccc}
+    A & B & C \\
+    1 & 2 & 3 \\
+  \end{tabular}
+
+\end{document}
+\end{lstlisting}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Tabela Simples}
+\framesubtitle{Opções de colunas}
+
+Toda tabela no \LaTeX\ precisa ser iniciada da seguinte forma:
+
+\begin{lstlisting}[style=latex, linewidth=6cm]
+\begin{tabular}{ COL }
+\end{lstlisting}
+
+\begin{columns}
+\begin{column}{8cm}
+Opções do COL:
+
+\begin{tabular}{cl}
+\hline
+ \bf COL  & \bf Descrição         \\
+\hline
+      r    & Alinhado à direita    \\
+      c    & Alinhado ao centro    \\
+      l    & Alinhado à esquerda   \\
+      |    & Borda lateral simples \\
+      ||   & Borda lateral dupla   \\
+ *\{N\}\{COL\} & Repete COL, N vezes   \\
+\hline
+\end{tabular}
+\end{column}
+
+\begin{column}{6.2cm}
+Exemplo:
+\begin{lstlisting}[style=latex]
+\begin{tabular}{|l c r|}
+  A & B & C \\
+  1 & 2 & 3 \\
+\end{tabular}
+
+\begin{tabular}{*{3}{c}}
+  A & B & C \\
+  1 & 2 & 3 \\
+\end{tabular}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Tabela Simples}
+\framesubtitle{Exemplo}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{ r *{2}{c} l }
+  A A & B B & C C & D D \\
+  1   & 4   & 7   & 10 \\
+  2   & 5   & 8   & 11 \\ 
+  3   & 6   & 9   & 12 \\
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bordas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Bordas}
+\framesubtitle{Linhas verticais (| e ||)}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{||c|c|c||}
+  A A & B B & C C \\
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Bordas}
+\framesubtitle{Linhas verticais (| e ||)}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{||c|c|c||}
+  A A & B B & C C \\
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Bordas}
+\framesubtitle{Linhas horizontais (\bs hline)}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{ccc}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Bordas}
+\framesubtitle{Linhas horizontais (\bs cline{i-j})}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{c c c}
+\cline{1-2}
+  A A & B B & C C \\
+\cline{2-3}
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Bordas}
+\framesubtitle{Espessura das linhas}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\setlength{\arrayrulewidth}{1mm}
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Alinhamento Horizontal}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Horizontal}
+\framesubtitle{Opções l, c, r}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|l|c|r|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Comprimento Fixo de Colunas}
+\framesubtitle{Pacote \textit{array}}
+
+Pacote necessário para fixar o comprimento das colunas: \textit{array}
+
+\begin{lstlisting}[style=latex, linewidth=12cm]
+\documentclass{article}
+
+% Pacotes
+\usepackage{array}     % tabela
+
+\begin{document}
+  % Inserindo tabela com colunas fixas
+  \begin{tabular}{ |m{1cm}|m{1cm}|}
+    A  &  B \\
+    1  &  2 \\
+  \end{tabular}
+
+\end{document}
+\end{lstlisting}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Comprimento Fixo de Colunas}
+\framesubtitle{Opção m\{\ldots\}}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|m{1cm}| c | m{15mm}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaço Entre Colunas}
+\framesubtitle{Comando \textit{tabcolsep}}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\setlength{\tabcolsep}{0mm}
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaço Entre Colunas}
+\framesubtitle{Comando \textit{tabcolsep}}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\setlength{\tabcolsep}{2mm}
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Alinhamento Vertical}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Pacote \textit{array}}
+
+Pacote necessário para alinhar verticalmente: \textit{array}
+
+\begin{lstlisting}[style=latex, linewidth=12cm]
+\documentclass{article}
+
+% Pacotes
+\usepackage{array}     % tabela
+
+\begin{document}
+  % Inserindo tabela com colunas fixas
+  \begin{tabular}{ |m{1cm}|p{1cm}|}
+    A  &  B \\
+    1  &  2 \\
+  \end{tabular}
+
+\end{document}
+\end{lstlisting}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Opções de colunas}
+
+É possível expandir as opções padrões de colunas utilizando o pacote \textit{array}:
+
+\begin{lstlisting}[style=latex, linewidth=6cm]
+\usepackage{array}
+\end{lstlisting}
+
+\vspace{0.5cm}
+
+\begin{columns}
+\begin{column}{8cm}
+Opções do COL:
+
+\begin{tabular}{cl}
+\hline
+ \bf COL  & \bf Descrição         \\
+\hline
+    m\{1cm\}  & Alinhado verticalmente ao centro \\
+    p\{1cm\}  & Alinhado verticalmente ao topo\\
+    b\{1cm\}  & Alinhado verticalmente à baixo  \\
+\hline
+\end{tabular}
+\end{column}
+
+\begin{column}{6.2cm}
+Exemplo:
+\begin{lstlisting}[style=latex]
+\begin{tabular}{|m{2cm}cc|}
+  A & B & C \\
+  1 & 2 & 3 \\
+\end{tabular}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Opção de colunas: m}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|m{4mm}| c | m{2cm}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Opção de colunas: p}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|p{4mm}| c | p{2cm}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Opção de colunas: b}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|b{4mm}| c | b{2cm}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Mais opções de colunas}
+
+É possível expandir as opções padrões de colunas ainda mais adicionando os comandos:
+
+\begin{lstlisting}[style=latex, linewidth=12cm]
+\def\hc{\centering\arraybackslash}
+\newcolumntype{M}[1]{>{\hc} m{#1}}
+\newcolumntype{P}[1]{>{\hc} p{#1}}
+\newcolumntype{B}[1]{>{\hc} b{#1}}
+\end{lstlisting}
+
+\vspace{3mm}
+
+\begin{columns}
+\begin{column}{8cm}
+Opções do COL:
+
+\begin{tabular}{cl}
+\hline
+ \bf COL  & \bf Descrição         \\
+\hline
+    M\{1cm\}  & Alinhado ao centro \\
+    P\{1cm\}  & Alinhado ao centro e ao topo\\
+    B\{1cm\}  & Alinhado ao centro e à baixo  \\
+\hline
+\end{tabular}
+\end{column}
+
+\begin{column}{6.2cm}
+Exemplo:
+\begin{lstlisting}[style=latex]
+\begin{tabular}{|M{2cm}cc|}
+  A & B & C \\
+  1 & 2 & 3 \\
+\end{tabular}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Mais opções de colunas: M}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|M{4mm}|c|M{16mm}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Mais opções de colunas: P}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|P{4mm}|c| P{16mm}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Alinhamento Vertical}
+\framesubtitle{Mais opções de colunas: B}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|B{4mm}|c|B{16mm}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\ 
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Comando \textit{arraystretch}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{|l|l|l|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+\hline
+  2   & 5   & 8   \\ 
+\hline
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Comando \textit{arraystretch}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{*{3}{|l}|}
+\hline
+  A A & B B & C C \\
+\hline
+  1   & 4   & 7   \\
+\hline
+  2   & 5   & 8   \\ 
+\hline
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Comando \bs \bs [\ldots]}
+
+É possível expandir o espaço vertical de uma coluna adicionando o valor desejado entre colchetes no final da linha ou adicionando linhas vazias:
+
+\vspace{5mm}
+Exemplo:
+\begin{lstlisting}[style=latex, linewidth=12cm]
+\begin{tabular}{ccc}
+  A A & B B & C C \\ [4mm] % Adicionando 4mm na linha
+  1   & 4   & 7   \\
+      &     &     \\       % Adicionando linha vazia
+  2   & 5   & 8   \\
+      &     &     \\       % Adicionando linha vazia
+  3   & 6   & 9   \\
+\end{tabular}
+\end{lstlisting}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Comando \bs \bs [\ldots]}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{*{3}{|l}|}
+\hline
+  A A & B B & C C \\ [4mm] 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Linhas vazias}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{*{3}{|l}|}
+\hline
+      &     &     \\ 
+  A A & B B & C C \\
+      &     &     \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Linhas vazias dimensionadas}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{*{3}{|l}|}
+\hline
+      &     &     \\ [-2mm]
+  A A & B B & C C \\
+      &     &     \\ [-2mm]
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Erro no comando \bs \bs [\ldots]}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|M{4mm}|c|M{16mm}|}
+\hline
+  A A & B B & C C \\ [1cm]
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Coluna nula}
+
+O commando \bs\bs [\ldots] pode nem sempre funcionar da maneira esperada.
+Para corrigir esse problema é possível adicionar uma coluna nula
+criada pelo comando:
+
+\begin{lstlisting}[style=latex, linewidth=8cm]
+\newcolumntype{N}{@{}m{0pt}@{}}
+\end{lstlisting}
+
+\vspace{5mm}
+Exemplo:
+\begin{lstlisting}[style=latex, linewidth=12cm]
+\begin{tabular}{|M{4mm}|c|M{16mm}|N}
+  A A & B B & C C &\\ [1cm]
+  1   & 4   & 7   &\\
+  2   & 5   & 8   &\\ 
+  3   & 6   & 9   &\\
+\end{tabular}
+\end{lstlisting}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Coluna nula}
+
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|M{4mm}|c|M{16mm}|N}
+\hline
+  A A & B B & C C &\\ [1cm]
+\hline
+  1   & 4   & 7   &\\
+  2   & 5   & 8   &\\ 
+  3   & 6   & 9   &\\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Espaçamento Vertical}
+\framesubtitle{Linhas vazias dimensionadas}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|M{4mm}|c|M{16mm}|}
+\hline
+  A A & B B & C C \\ 
+      &     &     \\ [5mm]
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Quebra de linha}
+\framesubtitle{Comando \textit{vcell}}
+
+Para que seja possível uma quebra de linha dentro de uma célula,
+é necessário definir o comando \textit{vcell}:
+
+\begin{lstlisting}[style=latex, linewidth=8cm]
+\newcommand{\vcell}[3][c]{
+  \begin{tabular}[#1]{@{}#2@{}}#3
+  \end{tabular}
+}
+\end{lstlisting}
+
+
+\begin{columns}
+
+\begin{column}{6.5cm}
+Uso:
+\begin{lstlisting}[style=latex, linewidth=6cm]
+\vcell[POS]{COL}{TXT}
+\end{lstlisting}
+
+\textbf{POS} (opcional): alinhamento vertical
+
+\textbf{COL}: alinhamento horizontal
+
+\textbf{TXT}: texto da célula
+
+\end{column}
+\begin{column}{4cm}
+Alinhamento vertical:
+\vspace{2mm}
+
+\begin{tabular}{cl}
+\hline
+POS   & Alinhamento \\
+\hline
+\bf c & Centro \\
+ t    & Topo   \\
+ b    & Baixo  \\
+\hline
+\end{tabular}
+
+\end{column}
+\begin{column}{4cm}
+Alinhamento horizontal:
+\vspace{2mm}
+
+\begin{tabular}{cl}
+\hline
+COL   & Alinhamento \\
+\hline
+ c    & Centro   \\
+ r    & Direita  \\
+ l    & Esquerda \\
+\hline
+\end{tabular}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Quebra de linha}
+\framesubtitle{Comando \textit{vcell}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|M{4mm}|c|M{16mm}|}
+\hline
+  A & B B & \vcell{l}{CCC \\ C} \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Quebra de linha}
+\framesubtitle{Comando \textit{vcell}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A & B B & \vcell{c}{CCC \\ C} \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Quebra de linha}
+\framesubtitle{Comando \textit{vcell}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A & B B & \vcell[t]{c}{CCC \\ C} \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Quebra de linha}
+\framesubtitle{Comando \textit{vcell}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A & B B & \vcell[b]{c}{CCC \\ C} \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mesclagem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Horizontal}
+\framesubtitle{Comando \textit{multicolumn}}
+
+Para mesclar células horizontalmente deve-se utilizar o comando 
+\textit{multicolumn}.
+
+% \begin{lstlisting}[style=latex, linewidth=8cm]
+% \newcommand{\vcell}[3][c]{
+%   \begin{tabular}[#1]{@{}#2@{}}#3
+%   \end{tabular}
+% }
+% \end{lstlisting}
+
+\vspace{7mm}
+
+\begin{columns}[t]
+
+\begin{column}{6.5cm}
+Uso:
+\begin{lstlisting}[style=latex, linewidth=6cm]
+\multicolumn{NUM}{COL}{TXT}
+\end{lstlisting}
+
+\textbf{NUM}: número de colunas
+
+\textbf{COL}: opção de coluna (ex: c, |c|, \ldots)
+
+\textbf{TXT}: texto da célula
+
+\end{column}
+\begin{column}{5.5cm}
+Exemplo:
+\begin{lstlisting}[style=latex, linewidth=8cm]
+\begin{tabular}{|c|c|c|}
+\hline
+  \multicolumn{2}{c}{AABB} & C C \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{lstlisting}
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Horizontal}
+\framesubtitle{Comando \textit{multicolumn}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  \multicolumn{2}{c}{AABB} & C C \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Horizontal}
+\framesubtitle{Comando \textit{multicolumn}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  \multicolumn{2}{|l|}{AABB} & C C \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Horizontal}
+\framesubtitle{Comando \textit{multicolumn}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|M{1cm}|c|c|}
+\hline
+  \multicolumn{1}{|l|}{A} & B & C C \\ 
+\hline
+  1   & 4   & 7   \\
+  2   & 5   & 8   \\
+  3   & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+* O comando \textit{multcolumn} também pode ser utilizado para alinhar horizontamente uma célula.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Vertical}
+\framesubtitle{Comando \textit{multirow}}
+
+Para mesclar células horizontalmente deve-se utilizar o comando 
+\textit{multicolumn} importando o pacote \textit{multirow}.
+
+\begin{lstlisting}[style=latex, linewidth=6cm]
+\usepackage{multirow}
+\end{lstlisting}
+
+\vspace{2mm}
+
+\begin{columns}[t]
+
+\begin{column}{6.5cm}
+Uso:
+\begin{lstlisting}[style=latex, linewidth=6.5cm]
+\multirow{NUM}{LAR}[ESP]{TXT}
+\end{lstlisting}
+
+\textbf{NUM}: número de linhas
+
+\textbf{TAM}: largura da célula
+
+\textbf{ESP} (opcional): espaço vertical
+
+\textbf{TXT}: texto da célula
+
+\end{column}
+\begin{column}{4.5cm}
+Exemplo:
+\begin{lstlisting}[style=latex, linewidth=8cm]
+\begin{tabular}{|c|c|c|}
+  A A & B B & C C \\ 
+ \multirow{3}{1cm}{123} & 4 & 7 \\
+     & 5   & 8   \\
+     & 6   & 9   \\
+\end{tabular}
+\end{lstlisting}
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Vertical}
+\framesubtitle{Comando \textit{multirow}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\ 
+\hline
+  \multirow{3}{*}{123} & 4 & 7 \\
+     & 5   & 8   \\
+     & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Vertical}
+\framesubtitle{Comando \textit{multirow}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\ 
+\hline
+  \multirow{3}{2cm}{123} & 4 & 7 \\
+     & 5   & 8   \\
+     & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Vertical}
+\framesubtitle{Comando \textit{multirow}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\ 
+\hline
+  \multirow{3}{2cm}[4mm]{123} & 4 & 7 \\
+     & 5   & 8   \\
+     & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Vertical}
+\framesubtitle{Comando \textit{multirow}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\ 
+\hline
+  \multirow{3}{2cm}[-4mm]{123} & 4 & 7 \\
+     & 5   & 8   \\
+     & 6   & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Mista}
+% \framesubtitle{Comando \textit{multirow}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{ c c c }
+\hline
+  A A & B B & C C \\ 
+\hline
+ \multicolumn{2}{c}{
+    \multirow{3}{*}{123} } & 7 \\
+  & & 8   \\
+  & & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Mista}
+% \framesubtitle{Comando \textit{multirow}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\ 
+\hline
+ \multicolumn{2}{|c|}{
+    \multirow{3}{*}{123} } & 7 \\
+  & & 8   \\
+  & & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Mesclagem Mista}
+% \framesubtitle{Comando \textit{multirow}}
+\vspace{-3mm}
+\makebox[0.65\linewidth][l]{Código \LaTeX:}%
+\makebox[0.35\linewidth][l]{Saída:}% 
+\vfill
+
+\begin{LTXexample}[style=example,width=0.35\linewidth]
+\begin{tabular}{|c|c|c|}
+\hline
+  A A & B B & C C \\ 
+\hline
+ \multicolumn{2}{|c|}{
+    \multirow{3}{*}{123} } & 7 \\
+  \multicolumn{2}{|c|}{} & 8   \\
+  \multicolumn{2}{|c|}{} & 9   \\
+\hline
+\end{tabular}
+\end{LTXexample}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]{Resumo}
+% \framesubtitle{Opções de coluna}
+% \vspace{-3mm}
+
+\begin{columns}
+
+\begin{column}{5cm}
+Uso:
+\begin{lstlisting}[style=latex, linewidth=5cm]
+\begin{tabular}{ COL }
+ TABLE
+\end{tabular}
+\end{lstlisting}
+
+\end{column}
+
+\begin{column}{8cm}
+
+\begin{tabular}{cl}
+\hline
+ \bf COL  & \bf Descrição         \\
+\hline
+      r    & Alinhado à direita    \\
+      c    & Alinhado ao centro    \\
+      l    & Alinhado à esquerda   \\
+      |    & Borda lateral simples \\
+      ||   & Borda lateral dupla   \\
+ *\{N\}\{COL\} & Repete COL, N vezes   \\
+    m\{1cm\}  & Alinhado verticalmente ao centro \\
+    p\{1cm\}  & Alinhado verticalmente ao topo\\
+    b\{1cm\}  & Alinhado verticalmente à baixo  \\
+    M\{1cm\}  & Alinhado ao centro \\
+    P\{1cm\}  & Alinhado ao centro e ao topo\\
+    B\{1cm\}  & Alinhado ao centro e à baixo  \\
+    N         & Coluna neutra \\
+\hline
+\end{tabular}
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Resumo}
+
+\begin{tabular}{ll}
+\hline
+ \bf TABLE     & \bf Descrição         \\
+\hline
+     \&           & Separador de coluna    \\
+  \bs\bs          & Separador de linha     \\
+ \bs\bs[1cm]      & Aumentar altura da linha   \\
+  \bs hline       & Linha horizontal \\
+\bs cline\{i-j\}  & Linha horizontal parcial \\
+\bs vcell[POS]\{COL\}\{TXT\} & Célula com quebra de linha   \\
+\bs multirow\{NUM\}\{LAR\}[ESP]\{TXT\}  & Mesclagem vertical \\
+\bs multicolumn\{NUM\}\{COL\}\{TXT\} & Mesclagem horizontal   \\
+\hline
+\end{tabular}
+
+\end{frame}
+
+\end{document}
