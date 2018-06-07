@@ -1,5 +1,5 @@
 # TemplatePUC
-Este projeto destina-se a facilitar e corrigir o template original fornecido pela universidade PUC-Rio: *ModelPUC.cls*, que pode ser obtido através do site [CCPG](http://www.puc-rio.br/ensinopesq/ccpg/apresentacao_ted.html).
+Este projeto destina-se a facilitar e corrigir o template original fornecido pela universidade PUC-Rio: *ModelPUC.cls*, que pode ser obtido através do site [CCPG].
 
 Dentre as diferenças entre o modelo original e o desenvolvido estão:
 
@@ -21,17 +21,36 @@ Dentre as diferenças entre o modelo original e o desenvolvido estão:
 
 
 ## 1. Instalação
-O funcionamento do template resume-se à instalação do [Tex Live](https://www.tug.org/texlive/acquire-netinstall.html). Feita a instalação, basta colocar o arquivo *TemplatePUC.cls* no diretório atual ou no diretório do LaTeX e atualizá-lo.
+O funcionamento do template resume-se à instalação do [Tex Live]. Feita a instalação, basta colocar o arquivo *TemplatePUC.cls* no diretório atual ou no diretório do LaTeX e atualizá-lo.
 
 ### 1.1. Windows
 
+#### 1.1.1. Instalação Simples
 No Windows, baixe e execute *install-tl-windows.exe*. Após a instalação, coloque o arquivo *TemplatePUC.cls* na pasta:
 
-> C:\texlive\2017\texmf-dist\tex\LaTeX\templatePUC
+> C:\texlive\2017\texmf-dist\tex\latex\TemplatePUC
 
-Abrir o terminal do Tex Live (procurando no menu iniciar ou indo em C:\texlive\2017\tlpkg\installer\tl-cmd.bat) e digitar:
+Abra o terminal do Tex Live (procurando no menu iniciar ou indo em C:\texlive\2017\tlpkg\installer\tl-cmd.bat) e digite:
 
 > texhash
+
+Caso haja uma nova versão do arquivo *TemplatePUC.cls* basta realizar o download e substiuí-lo.
+
+#### 1.1.2. Instalação com Git
+
+No Windows, baixe e execute *install-tl-windows.exe*. Após a instalação, abra o terminal git e digite:
+
+> cd C:/texlive/2017/texmf-dist/tex/latex/TemplatePUC
+> git clone https://github.com/bismarckjunior/TemplatePUC.git
+
+Abra o terminal do Tex Live (procurando no menu iniciar ou indo em C:\texlive\2017\tlpkg\installer\tl-cmd.bat) e digite:
+
+> texhash
+
+Caso haja uma nova versão do projeto, basta realizar um pull para receber a atualização. Para isso, abra o terminal git e digite:
+
+> cd C:/texlive/2017/texmf-dist/tex/latex/TemplatePUC
+> git pull
 
 ### 1.2. Linux
 
@@ -58,19 +77,36 @@ por:
 
 > PATH="/usr/local/sbin:usr [...] :/usr/local/games:/usr/local/texlive/2018/bin/x86_64-linux/"
 
+#### 1.2.1. Instalação Simples
+
 Para adicionar o *TemplatePUC* ao sistema, crie uma pasta dentro do texlive:
 
-> sudo mkdir /usr/local/texlive/texmf-local/tex/latex/local/templatePUC
+> sudo mkdir /usr/local/texlive/texmf-local/tex/latex/local/TemplatePUC
 
 Copie o arquivo *TemplatePUC.cls* para a pasta criada:
 
-> sudo cp TemplatePUC.cls /usr/local/texlive/texmf-local/tex/latex/local/templatePUC
+> sudo cp TemplatePUC.cls /usr/local/texlive/texmf-local/tex/latex/local/TemplatePUC
 
-Atualizar o TexLive:
+Atualize o TexLive:
 
 > sudo /usr/local/texlive/2018/bin/x86_64-linux/texhash
 
 Finalmente, encerre a sessão atual ou reinicialize o sistema.
+
+Caso haja uma nova versão do arquivo *TemplatePUC.cls* basta realizar o download e substiuí-lo.
+
+#### 1.2.2. Instalação com Git
+
+Para adicionar o *TemplatePUC* ao sistema, digite no terminal:
+
+> cd /usr/local/texlive/texmf-local/tex/latex/local/
+> sudo git clone https://github.com/bismarckjunior/TemplatePUC.git
+> sudo chown -R user TemplatePUC
+> sudo /usr/local/texlive/2018/bin/x86_64-linux/texhash
+
+Caso haja uma nova versão do projeto, basta realizar um pull para receber a atualização. Para isso, abra um terminal na pasta e digite:
+
+> git pull
 
 ## 2. Instruções de Uso
 As instruções de como utilizar o template está descrita no arquivo [instrucoes_uso.pdf](doc/InstrucoesUso/instrucoes_uso.pdf).
@@ -85,7 +121,7 @@ Para a compilação recomenda-se o uso do Sublime Text, mas por conveniência se
 No TeXworks basta inicializar o arquivo principal.
 
 ### 4.2. Sublime Text
-No [Sublime Text](https://www.sublimetext.com/) existe o pacote [LaTeXTools](https://packagecontrol.io/packages/LaTeXTools), no qual basta abrir o arquivo *tex* e compilar com o comando (Ctrl+B).
+No [Sublime Text] existe o pacote [LaTeXTools], no qual basta abrir o arquivo *tex* e compilar com o comando (Ctrl+B).
 
 Com o Sublime Text instalado siga os passos:
 1. Instalar o package contol: Ctrl+Shift+P, "Install Package Control", Enter
@@ -116,4 +152,10 @@ Alguns snippets foram criados para o desenvolvimento do documento utilizando o S
 * *\figure*: inserir uma figura
 
 ## 5. Licença
-O template criado, TemplatePUC, foi baseado no modelo desenvolvido para PUC-Rio por: Thomas Lewiner, Marcelo Roberto Jimenez e David Pirotte, possuindo o Copyright (C) 2015, 2017 PUC-Rio. Esse modelo utiliza o licença de cópia GNU Free Documentation License que se encontra no arquivo [*LICENSING*](LICENSING).
+O template criado, TemplatePUC, foi baseado no modelo desenvolvido para PUC-Rio por: Thomas Lewiner, Marcelo Roberto Jimenez e David Pirotte, possuindo o Copyright (C) 2015, 2017 PUC-Rio. Esse modelo utiliza a licença de cópia GNU Free Documentation License que se encontra no arquivo [*LICENSING*](LICENSING).
+
+
+[CCPG]: http://www.puc-rio.br/ensinopesq/ccpg/apresentacao_ted.html
+[Tex Live]: https://www.tug.org/texlive/acquire-netinstall.html
+[Sublime Text]: https://www.sublimetext.com/
+[LaTeXTools]: https://packagecontrol.io/packages/LaTeXTools
